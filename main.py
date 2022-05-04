@@ -2,7 +2,7 @@ from telegram.ext import Updater, CommandHandler,CallbackContext
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, InputMediaPhoto
 import logging
 
-updater = Updater(token='5374655095:AAFXgm6THGMjWiF5SUJEa3SKVk7CIgtb8yU', use_context=True)
+updater = Updater(token='MY_TOKEN', use_context=True)
 dispatcher = updater.dispatcher
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
