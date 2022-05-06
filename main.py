@@ -1,11 +1,11 @@
-from telegram.ext import Updater, CommandHandler, CallbackQueryHandler
+from telegram.ext import Updater, CommandHandler, CallbackQueryHandler, MessageHandler, Filters
 from telegram.update import Update
 from telegram.ext.callbackcontext import CallbackContext
-from telegram import InlineKeyboardButton, InlineKeyboardMarkup, InputMediaPhoto
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup
 import logging
 from telegram.bot import Bot
 
-updater = Updater(token='MY_TOKEN', use_context=True)
+updater = Updater(token='5374655095:AAFXgm6THGMjWiF5SUJEa3SKVk7CIgtb8yU', use_context=True)
 dispatcher = updater.dispatcher
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
@@ -18,7 +18,8 @@ def start(update, context):
 
 
 
-def once(context: CallbackContext):
+def once(update: Update,context: CallbackContext):
+    user = update.message.from_user
     message = "Hey Samarth, Good morning!"
     
     # send message to all users
@@ -28,8 +29,12 @@ def once(context: CallbackContext):
         context.bot.send_message(chat_id=id, text=message)
         keyboard = [[InlineKeyboardButton("Yes! Iam working", callback_data='1'),
                  InlineKeyboardButton("No, I'll be on leave today!", callback_data='2')]]
+        # keyboard = [["Yes! Iam working","No, I'll be on leave today!"]]
 
         reply_markup = InlineKeyboardMarkup(keyboard)
+        # reply_markup = ReplyKeyboardMarkup(
+        #     keyboard, one_time_keyboard=True, input_field_placeholder='Boy or Girl?'
+        # )
         context.bot.send_message(chat_id=id, text='Are you working today', reply_markup=reply_markup)
 
 def c_back_respons(update: Update, context: CallbackContext):
@@ -49,10 +54,17 @@ def c_back_respons(update: Update, context: CallbackContext):
         context.bot.send_message(chat_id=id, text='What are you working on? Type in your answer!')
         
         
+
+# def reply(update, context):
+#     user_input = update.message.text
+#     print(user_input)
+
+        
 j = updater.job_queue       
 start_handler = CommandHandler('start', start)
 dispatcher.add_handler(start_handler)
 dispatcher.add_handler(CallbackQueryHandler(c_back_respons))
+# dispatcher.add_handler(MessageHandler(Filters.text, reply))
 j.run_once(once, 10)
 updater.start_polling()
 updater.idle()
