@@ -1,2 +1,2 @@
 # telegramBot
-An experiment to simplify routine tasks using the telegram bot
+An experiment to simplify routine tasks using the telegram bot scheduled messages
