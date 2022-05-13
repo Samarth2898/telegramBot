@@ -5,7 +5,7 @@ from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMa
 import logging
 from telegram.bot import Bot
 
-updater = Updater(token='TOKEN', use_context=True)
+updater = Updater(token='5374655095:AAFXgm6THGMjWiF5SUJEa3SKVk7CIgtb8yU', use_context=True)
 dispatcher = updater.dispatcher
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
@@ -50,6 +50,9 @@ def c_back_respons(update: Update, context: CallbackContext):
     if call_back_data in ("3"):
         update.callback_query.edit_message_reply_markup(None)
         context.bot.send_message(chat_id=id, text='What are you working on? Type in your answer! Add number 1 before the reply')
+    if call_back_data in ("4"):
+        update.callback_query.edit_message_reply_markup(None)
+        context.bot.send_message(chat_id=id, text='What are you working on? Type in your answer! Add number 2 before the reply')
     if call_back_data in ("5"):
         update.callback_query.edit_message_reply_markup(None)
         context.bot.send_message(chat_id=id, text='message sent to teams!')
